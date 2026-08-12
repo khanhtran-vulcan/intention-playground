@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant User
+    participant Client
+    participant Router
+
+    User->>Client: "Make this image nicer" (image attached, ambiguous)
+    Client->>Router: RoutingRequest (clarification_turn_count=0)
+    Router-->>Client: CLARIFY "Create a new image or edit this one?"
+    Client-->>User: render question + option cards
+
+    User->>Client: click "Edit this image" (no style yet)
+    Client->>Router: RoutingRequest (clarification_turn_count=1, new user text)
+    Router-->>Client: CLARIFY "Which style would you like?"
+
+    User->>Client: free-text answer "anime style"
+    Client->>Router: RoutingRequest (clarification_turn_count=2)
+    Router-->>Client: ROUTE image_to_image_generation
+
+    Note over Client,Router: If still unresolved at turn_count=3,<br/>Router returns FALLBACK(CLARIFICATION_LIMIT_REACHED)

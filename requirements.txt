@@ -1,0 +1,13 @@
+streamlit==1.46.1
+pandas==2.3.1
+scikit-learn==1.7.1
+joblib==1.5.1
+numpy==2.2.6
+sentence-transformers==5.0.0
+torch==2.7.1
+google-genai==1.26.0
+openai==1.109.1
+pydantic==2.11.7
+python-dotenv==1.1.1
+regex==2024.11.6
+pytest==8.4.1

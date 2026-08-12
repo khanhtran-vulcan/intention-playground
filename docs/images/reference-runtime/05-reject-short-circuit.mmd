@@ -1,0 +1,13 @@
+flowchart TD
+    A[Request] --> B{Policy Gate}
+    B -- allow --> C[Tier 0]
+    C --> D[Classifier]
+    D --> E[Validator]
+    B -- block --> F["REJECT<br/>safe response_text<br/>no name/arguments/clarification"]
+
+    F -.->|never reached when blocked| C
+    F -.->|never reached when blocked| D
+    F -.->|never reached when blocked| E
+
+    classDef reject fill:#fecaca,stroke:#dc2626,color:#111827
+    class F reject

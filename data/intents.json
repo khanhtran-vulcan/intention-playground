@@ -1,0 +1,254 @@
+{
+  "intents": [
+    {
+      "name": "creative",
+      "parent": null,
+      "prompt_section": "Create an unspecified creative or design asset when the requested asset type is not clear.",
+      "examples": [
+        "Tạo một thiết kế sáng tạo giúp tôi",
+        "Làm cho tôi một ấn phẩm đẹp",
+        "Tôi cần một creative design",
+        "Thiết kế gì đó bắt mắt cho chiến dịch này",
+        "Giúp tôi tạo một sản phẩm đồ họa",
+        "Can you make a creative asset for me?",
+        "Tao mot thiet ke dep",
+        "Tôi muốn làm nội dung hình ảnh nhưng chưa biết loại nào",
+        "Make something visually creative",
+        "Cần một mẫu thiết kế cho thương hiệu",
+        "Hãy tạo một visual mới",
+        "Thiết kế một ấn phẩm truyền thông"
+      ],
+      "image_examples": [],
+      "patterns": ["\\b(creative|visual|thiết kế)\\b", "(tạo|làm|thiết kế).{0,30}(ấn phẩm|đồ họa|thiết kế)"],
+      "required_context": null,
+      "rule_priority": 10,
+      "properties": {}
+    },
+    {
+      "name": "create_ai_art",
+      "parent": "creative",
+      "prompt_section": "Generate or create a new illustration or artwork from text, excluding logos, posters, and flyers.",
+      "examples": [
+        "Vẽ một chú mèo phi hành gia trên mặt trăng",
+        "Tạo ảnh phong cảnh cyberpunk ban đêm",
+        "Generate an image of a dragon in the clouds",
+        "Tôi muốn một bức tranh hoa sen",
+        "Ve anh robot dang uong ca phe",
+        "Create digital art of an underwater city",
+        "Minh họa khu rừng thần tiên",
+        "Tạo một artwork về thành phố tương lai",
+        "Draw a watercolor mountain landscape",
+        "Sinh ảnh một con tàu bay giữa các vì sao",
+        "Làm ảnh AI về cô gái đọc sách",
+        "Create a new fantasy illustration"
+      ],
+      "image_examples": [],
+      "patterns": ["(vẽ|tạo|sinh|generate|create|draw).{0,35}(ảnh|tranh|art|illustration)", "\\bartwork\\b", "\\bminh họa\\b"],
+      "required_context": null,
+      "rule_priority": 30,
+      "properties": {
+        "prompt": {
+          "type": "string",
+          "description": "Prompt describing the art in great detail only for create_ai_art.",
+          "required": true,
+          "enum": null,
+          "max_words": 25
+        }
+      }
+    },
+    {
+      "name": "generate_logo",
+      "parent": "creative",
+      "prompt_section": "Create a logo, logotype, symbol, or brand mark.",
+      "examples": [
+        "Tạo logo cho quán cà phê của tôi",
+        "Thiết kế logo công ty công nghệ",
+        "Generate a minimalist brand logo",
+        "Làm biểu tượng thương hiệu hình con cáo",
+        "Tao logo chu cho shop",
+        "I need a logo for my startup",
+        "Thiết kế logotype tên Vulcan",
+        "Create a brand mark for a bakery",
+        "Làm logo tròn màu xanh",
+        "Tạo biểu trưng cho câu lạc bộ",
+        "Design a monogram logo",
+        "Cho tôi một mẫu logo mới"
+      ],
+      "image_examples": [],
+      "patterns": ["\\b(logo|logotype|brand mark|monogram)\\b", "(biểu tượng|biểu trưng).{0,20}(thương hiệu|công ty|câu lạc bộ)"],
+      "required_context": null,
+      "rule_priority": 50,
+      "properties": {}
+    },
+    {
+      "name": "generate_poster",
+      "parent": "creative",
+      "prompt_section": "Create a poster for an event, campaign, promotion, announcement, or display.",
+      "examples": [
+        "Tạo poster cho đêm nhạc",
+        "Thiết kế áp phích tuyển dụng",
+        "Generate a movie poster",
+        "Làm poster sale cuối tuần",
+        "Tao poster su kien ngay 20/8",
+        "I need an event poster",
+        "Thiết kế poster quảng bá sản phẩm",
+        "Create a concert poster for Friday",
+        "Làm áp phích bảo vệ môi trường",
+        "Tạo poster khai trương cửa hàng",
+        "Design a promotional poster",
+        "Cho tôi poster thông báo workshop"
+      ],
+      "image_examples": [],
+      "patterns": ["\\bposter\\b", "\\báp phích\\b"],
+      "required_context": null,
+      "rule_priority": 50,
+      "properties": {}
+    },
+    {
+      "name": "generate_flyer",
+      "parent": "creative",
+      "prompt_section": "Create a flyer, leaflet, handout, or small-format promotional sheet.",
+      "examples": [
+        "Tạo flyer quảng cáo khóa học",
+        "Thiết kế tờ rơi khai trương",
+        "Generate a restaurant flyer",
+        "Làm leaflet giới thiệu dịch vụ",
+        "Tao to roi giam gia",
+        "I need a promotional handout",
+        "Thiết kế flyer cho lớp yoga",
+        "Create a product leaflet",
+        "Làm tờ bướm cho hội chợ",
+        "Tạo flyer phát tại sự kiện",
+        "Design a one-page handout",
+        "Cho tôi mẫu tờ rơi mới"
+      ],
+      "image_examples": [],
+      "patterns": ["\\b(flyer|leaflet|handout)\\b", "\\btờ (rơi|bướm)\\b"],
+      "required_context": null,
+      "rule_priority": 50,
+      "properties": {}
+    },
+    {
+      "name": "chat_with_image",
+      "parent": null,
+      "prompt_section": "Ask about the content of attached images, such as what is shown, how many people appear, or a description of the image.",
+      "examples": [
+        "Ảnh này có gì?",
+        "Mô tả bức ảnh này",
+        "Có bao nhiêu người trong hình?",
+        "What is in this image?"
+      ],
+      "image_examples": [
+        "Bạn nhìn thấy gì?",
+        "Describe this image",
+        "Người trong ảnh đang làm gì?",
+        "Đây là địa điểm nào?",
+        "Đọc chữ trong hình giúp tôi",
+        "How many objects are there?",
+        "Màu chủ đạo của ảnh là gì?",
+        "Giải thích nội dung hình này"
+      ],
+      "patterns": ["(ảnh|hình).{0,25}(có gì|là gì|mô tả|bao nhiêu|đang làm|nội dung)", "(mô tả|nội dung|bao nhiêu).{0,25}(ảnh|hình)", "(what|who|how many|describe).{0,20}(image|photo|picture)"],
+      "required_context": "image",
+      "rule_priority": 30,
+      "properties": {}
+    },
+    {
+      "name": "image_to_image_generation",
+      "parent": null,
+      "prompt_section": "Transform an existing image into a requested visual style. Use style other when the requested style is not listed.",
+      "examples": [
+        "Chuyển ảnh này sang phong cách Ghibli",
+        "Biến hình của tôi thành anime",
+        "Turn this photo into manga style",
+        "Làm ảnh này theo kiểu Disney"
+      ],
+      "image_examples": [
+        "Đổi sang style Naruto",
+        "Make it look like South Park",
+        "Chuyển bức hình thành tranh One Piece",
+        "Transform this into watercolor style",
+        "Cho ảnh này phong cách Demon Slayer",
+        "Restyle this photo as The Simpson",
+        "Biến ảnh thành nhân vật Doraemon",
+        "Apply a cyberpunk visual style"
+      ],
+      "patterns": ["(chuyển|biến|đổi|transform|restyle|apply).{0,40}(ảnh|hình|photo|image|style|phong cách)", "(ảnh|hình|photo|image).{0,30}(phong cách|style|thành anime|thành manga)"],
+      "required_context": "image",
+      "rule_priority": 40,
+      "properties": {
+        "style": {
+          "type": "string",
+          "description": "Requested style only for image_to_image_generation.",
+          "required": true,
+          "enum": [
+            "ghibli",
+            "anime",
+            "disney",
+            "genshin_impact",
+            "manga",
+            "one_piece",
+            "naruto",
+            "dragon_ball",
+            "bleach",
+            "attack_on_titan",
+            "demon_slayer",
+            "doraemon",
+            "sailor_moon",
+            "the_simpson",
+            "rick_and_morty",
+            "south_park",
+            "other"
+          ],
+          "max_words": null
+        }
+      }
+    },
+    {
+      "name": "real_time_search",
+      "parent": null,
+      "prompt_section": "Answer queries that require current web information, such as weather, stocks, live events, or facts at a specific time. Timestamps used only as creative asset content do not qualify.",
+      "examples": [
+        "Thời tiết Hà Nội hôm nay thế nào?",
+        "Giá cổ phiếu Apple hiện tại",
+        "Tỷ giá USD sáng nay",
+        "Who won the match last night?",
+        "Tin tức mới nhất về AI",
+        "Bitcoin dang gia bao nhieu?",
+        "Chuyến bay VN123 có trễ không?",
+        "What is happening in London right now?",
+        "Kết quả xổ số ngày hôm nay",
+        "Giá vàng lúc 9 giờ sáng",
+        "Is the market open now?",
+        "Tra cứu lịch chiếu phim tối nay"
+      ],
+      "image_examples": [],
+      "patterns": ["(hôm nay|hiện tại|bây giờ|mới nhất|right now|current|latest).{0,40}(thời tiết|giá|tin|kết quả|weather|stock|market|news)", "(thời tiết|tỷ giá|giá (vàng|bitcoin|cổ phiếu)|kết quả xổ số)"],
+      "required_context": null,
+      "rule_priority": 20,
+      "properties": {}
+    },
+    {
+      "name": "unknown",
+      "parent": null,
+      "prompt_section": "The query does not match any defined category.",
+      "examples": [
+        "Xin chào bạn",
+        "Kể cho tôi một câu chuyện",
+        "Giải phương trình x cộng hai bằng năm",
+        "Dịch câu này sang tiếng Anh",
+        "Viết email xin nghỉ phép",
+        "Bạn tên là gì?",
+        "Hướng dẫn nấu phở",
+        "Tell me a joke",
+        "Tóm tắt đoạn văn này",
+        "Cảm ơn bạn"
+      ],
+      "image_examples": [],
+      "patterns": [],
+      "required_context": null,
+      "rule_priority": 0,
+      "properties": {}
+    }
+  ]
+}

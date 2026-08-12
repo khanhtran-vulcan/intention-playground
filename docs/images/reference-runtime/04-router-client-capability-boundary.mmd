@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant User
+    participant Client
+    participant Router as Reference Router
+    participant Mock as Mock Capability Simulator
+
+    User->>Client: message
+    Client->>Router: RoutingRequest
+    Router-->>Client: ROUTE(name, arguments)
+    Note over Router: Router stops here.<br/>It never calls Mock or any capability.
+
+    Client->>Client: check quota / entitlement / usage
+    Client->>Mock: CapabilityExecutionRequest (explicit call)
+    Mock-->>Client: CapabilityResult(response_text, artifacts, suggested_actions)
+    Client-->>User: render capability response + suggested action buttons
+
+    User->>Client: click a suggested action
+    Client->>Client: append suggested_action.user_message as a NEW user turn
+    Client->>Router: RoutingRequest (next turn)

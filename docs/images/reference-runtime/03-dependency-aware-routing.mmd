@@ -1,0 +1,16 @@
+flowchart TD
+    U["User: Research coffee trends, then make a poster"] --> CL[Classifier]
+    CL --> DEP["dependencies: generate_poster depends_on deep_research"]
+    DEP --> VAL[Validator]
+    VAL --> RT1["ROUTE deep_research<br/>reason_code=NEXT_EXECUTABLE_PREREQUISITE"]
+    RT1 --> CAP1["Client explicitly runs<br/>Mock Deep Research Capability"]
+    CAP1 --> SUG["CapabilityResult.suggested_actions:<br/>label=Make a poster"]
+    SUG -->|user clicks| NT["New user turn:<br/>Make a poster from the research above"]
+    NT --> CL2[Classifier, turn 2]
+    CL2 --> VAL2[Validator]
+    VAL2 --> RT2["ROUTE generate_poster<br/>reason_code=DEPENDENCY_ALREADY_SATISFIED"]
+
+    classDef route fill:#bbf7d0,stroke:#16a34a,color:#111827
+    classDef capability fill:#fde68a,stroke:#d97706,color:#111827
+    class RT1,RT2 route
+    class CAP1,SUG capability

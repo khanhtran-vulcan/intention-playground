@@ -1,0 +1,22 @@
+flowchart TD
+    A[Request: messages + tools + context] --> B{Policy Gate}
+    B -- block --> R1[REJECT: safe response_text]
+    B -- allow --> C{Tier 0}
+    C -- static hit --> R2[RESPOND_STATIC: versioned static text]
+    C -- miss --> D[Classifier: goals, candidate intents, dependencies]
+    D --> E{Validator}
+    E -- ready --> R3[ROUTE: name + arguments]
+    E -- one blocking question --> R4[CLARIFY: question + options]
+    E -- no safe executable route --> R5[FALLBACK]
+
+    classDef reject fill:#fecaca,stroke:#dc2626,color:#111827
+    classDef route fill:#bbf7d0,stroke:#16a34a,color:#111827
+    classDef clarify fill:#fef3c7,stroke:#d97706,color:#111827
+    classDef fallback fill:#e5e7eb,stroke:#6b7280,color:#111827
+    classDef stage fill:#dbeafe,stroke:#2563eb,color:#111827
+
+    class R1 reject
+    class R2,R3 route
+    class R4 clarify
+    class R5 fallback
+    class B,C,D,E stage

@@ -1,0 +1,55 @@
+text,expected_intent,has_image
+Thiết kế một thứ gì đó thật sáng tạo,creative,false
+Tôi cần một visual nhưng chưa biết loại nào,creative,false
+Make a creative asset for this campaign,creative,false
+Làm một ấn phẩm truyền thông,creative,false
+Tao giup minh mot thiet ke dep,creative,false
+Create something visually interesting,creative,false
+Vẽ con hổ máy giữa rừng tre,create_ai_art,false
+Generate an illustration of a floating castle,create_ai_art,false
+Tạo ảnh AI về thành phố dưới biển,create_ai_art,false
+Ve tranh phi hanh gia tren sao Hoa,create_ai_art,false
+Create fantasy artwork with a blue dragon,create_ai_art,false
+Minh họa một khu vườn trên mây,create_ai_art,false
+Tạo logo cho tiệm bánh Mây,generate_logo,false
+Design a logo for my fintech startup,generate_logo,false
+Làm biểu trưng thương hiệu chữ V,generate_logo,false
+Tao logo toi gian mau den,generate_logo,false
+Create a circular brand mark,generate_logo,false
+Thiết kế monogram logo VL,generate_logo,false
+Tạo poster lễ hội âm nhạc ngày 20/8,generate_poster,false
+Design a poster for Friday's workshop,generate_poster,false
+Làm áp phích quảng cáo phim,generate_poster,false
+Tao poster sale cuoi thang,generate_poster,false
+Create an event poster with a date,generate_poster,false
+Thiết kế poster tuyển thành viên,generate_poster,false
+Tạo flyer giới thiệu quán ăn,generate_flyer,false
+Design a flyer for a yoga class,generate_flyer,false
+Làm tờ rơi khuyến mãi,generate_flyer,false
+Tao leaflet gioi thieu dich vu,generate_flyer,false
+Create a one-page promotional handout,generate_flyer,false
+Thiết kế tờ bướm cho hội chợ,generate_flyer,false
+Ảnh này đang thể hiện điều gì?,chat_with_image,true
+How many people are in this picture?,chat_with_image,true
+Đọc nội dung trong hình giúp tôi,chat_with_image,true
+Describe the attached photo,chat_with_image,true
+Màu sắc chính của ảnh là gì?,chat_with_image,false
+Ai đang xuất hiện trong hình?,chat_with_image,false
+Chuyển ảnh này thành phong cách anime,image_to_image_generation,true
+Make this photo look like Ghibli,image_to_image_generation,true
+Biến hình thành style Naruto,image_to_image_generation,true
+Restyle this image as watercolor,image_to_image_generation,true
+Đổi ảnh sang phong cách Disney,image_to_image_generation,false
+Transform this photo into manga style,image_to_image_generation,false
+Thời tiết Đà Nẵng hiện tại,real_time_search,false
+Giá Bitcoin bây giờ là bao nhiêu?,real_time_search,false
+Latest news about artificial intelligence,real_time_search,false
+Kết quả trận đấu tối qua,real_time_search,false
+Ty gia USD hom nay,real_time_search,false
+Is the stock market open right now?,real_time_search,false
+Viết email cảm ơn khách hàng,unknown,false
+Kể một câu chuyện vui,unknown,false
+Dịch hello sang tiếng Việt,unknown,false
+Giải thích định luật Newton,unknown,false
+Cho tôi công thức nấu bánh,unknown,false
+Summarize this paragraph,unknown,false

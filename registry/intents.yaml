@@ -1,0 +1,169 @@
+version: "2026-08-08.1"
+prompt_version: "router-v1"
+taxonomy_version: "reference-intents-v1-active5"
+
+intents:
+  - name: creative
+    archived: true
+    description: Unspecified creative or design asset when the asset type is unclear.
+    use_when:
+      - User asks for a creative asset without specifying logo, poster, flyer, or illustration.
+    do_not_use_when:
+      - User clearly names a specific asset type.
+    executable: false
+    risk_level: read_only
+    arguments_schema:
+      type: object
+      additionalProperties: false
+      properties: {}
+
+  - name: create_ai_art
+    description: Generate or create a new illustration or artwork from text.
+    use_when:
+      - User wants a new image, illustration, or artwork from a text prompt.
+    do_not_use_when:
+      - User wants to edit an attached image or transform style of existing image.
+      - Request is for logo, poster, or flyer specifically.
+    executable: true
+    risk_level: side_effect
+    arguments_schema:
+      type: object
+      additionalProperties: false
+      required: [prompt]
+      properties:
+        prompt:
+          type: string
+          description: Art prompt, max 25 words.
+
+  - name: generate_logo
+    archived: true
+    description: Create a logo design.
+    use_when:
+      - User explicitly requests a logo.
+    do_not_use_when:
+      - User wants general artwork without mentioning logo.
+    executable: true
+    risk_level: side_effect
+    arguments_schema:
+      type: object
+      additionalProperties: false
+      properties: {}
+
+  - name: generate_poster
+    archived: true
+    description: Create a poster design.
+    use_when:
+      - User explicitly requests a poster.
+    do_not_use_when:
+      - Prerequisite research result is missing when poster depends on prior research.
+    executable: true
+    risk_level: side_effect
+    arguments_schema:
+      type: object
+      additionalProperties: false
+      properties: {}
+
+  - name: generate_flyer
+    archived: true
+    description: Create a flyer or leaflet design.
+    use_when:
+      - User explicitly requests a flyer or leaflet.
+    do_not_use_when:
+      - User wants a poster instead.
+    executable: true
+    risk_level: side_effect
+    arguments_schema:
+      type: object
+      additionalProperties: false
+      properties: {}
+
+  - name: chat_with_image
+    description: Ask questions about content of an attached image.
+    use_when:
+      - User asks what is in an image and an image attachment is present.
+    do_not_use_when:
+      - No image attachment is available.
+    executable: true
+    risk_level: read_only
+    requires_image: true
+    arguments_schema:
+      type: object
+      additionalProperties: false
+      properties: {}
+
+  - name: image_to_image_generation
+    description: Transform an attached image into a requested visual style.
+    use_when:
+      - User wants style transfer or restyle of an attached image.
+    do_not_use_when:
+      - No image attachment is present.
+    executable: true
+    risk_level: side_effect
+    requires_image: true
+    arguments_schema:
+      type: object
+      additionalProperties: false
+      required: [style]
+      properties:
+        style:
+          type: string
+          enum:
+            - ghibli
+            - anime
+            - disney
+            - genshin_impact
+            - manga
+            - one_piece
+            - naruto
+            - dragon_ball
+            - bleach
+            - attack_on_titan
+            - demon_slayer
+            - doraemon
+            - sailor_moon
+            - the_simpson
+            - rick_and_morty
+            - south_park
+            - other
+
+  - name: real_time_search
+    description: Queries needing live or current information from the web.
+    use_when:
+      - User asks about current weather, prices, news, or other time-sensitive facts without asking for deep research.
+    do_not_use_when:
+      - User asks for a static definition or general knowledge without needing live data.
+      - User explicitly asks for deep research, nghiên cứu sâu, or a research report.
+    executable: true
+    risk_level: read_only
+    arguments_schema:
+      type: object
+      additionalProperties: false
+      properties: {}
+
+  - name: deep_research
+    description: Research a topic using external sources; session-based in production.
+    use_when:
+      - User explicitly requests research, verification, citations, or deep investigation.
+      - Multi-step requests that start with research then create an image/poster (route research first).
+    do_not_use_when:
+      - User only wants a simple explanation that does not require external sources.
+      - User only wants a quick live fact lookup (prefer real_time_search).
+    executable: true
+    risk_level: read_only
+    arguments_schema:
+      type: object
+      additionalProperties: false
+      required: [final_prompt]
+      properties:
+        final_prompt:
+          type: string
+          description: Research topic or query (field name reused from ms-smith-nexus proto).
+
+  - name: unknown
+    description: Fallback when no registered intent applies.
+    executable: false
+    risk_level: read_only
+    arguments_schema:
+      type: object
+      additionalProperties: false
+      properties: {}

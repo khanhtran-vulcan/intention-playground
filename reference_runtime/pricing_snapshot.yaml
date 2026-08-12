@@ -1,0 +1,64 @@
+# Optional $/request estimates for model-selection reports.
+# Ranking cost metric is mean total_tokens; $ is derived only when rates exist.
+# Rates: standard online text, ≤200K context. Cached rates unused.
+# price_as_of: operator-provided snapshot from official pricing pages / uploads.
+
+price_as_of: "2026-08-07"
+currency: USD
+notes: >
+  Text / ≤200K online rates. Ranking uses mean total_tokens first;
+  USD is an optional estimate. Do not auto-fetch — providers have no pricing API.
+
+models:
+  gemini-3.5-flash-lite:
+    provider: gemini
+    input_usd_per_1m: 0.30
+    output_usd_per_1m: 2.50
+  gemini-3.1-flash-lite:
+    provider: gemini
+    input_usd_per_1m: 0.25
+    output_usd_per_1m: 1.50
+  gemini-2.5-flash-lite:
+    provider: gemini
+    input_usd_per_1m: 0.10
+    output_usd_per_1m: 0.40
+  gemini-2.5-flash:
+    provider: gemini
+    input_usd_per_1m: 0.30
+    output_usd_per_1m: 2.50
+  gemini-3.6-flash:
+    provider: gemini
+    input_usd_per_1m: 1.50
+    output_usd_per_1m: 7.50
+  gemini-3.1-pro-preview:
+    provider: gemini
+    input_usd_per_1m: 2.00
+    output_usd_per_1m: 12.00
+  gpt-5.6-luna:
+    provider: openai
+    input_usd_per_1m: 0.20
+    output_usd_per_1m: 1.20
+  gpt-5.6-sol:
+    provider: openai
+    input_usd_per_1m: 5.00
+    output_usd_per_1m: 30.00
+  gpt-5.4-nano:
+    provider: openai
+    input_usd_per_1m: 0.20
+    output_usd_per_1m: 1.25
+  gpt-5.4-mini:
+    provider: openai
+    input_usd_per_1m: 0.75
+    output_usd_per_1m: 4.50
+  gpt-5-nano:
+    provider: openai
+    input_usd_per_1m: 0.05
+    output_usd_per_1m: 0.40
+  gpt-5-mini:
+    provider: openai
+    input_usd_per_1m: 0.25
+    output_usd_per_1m: 2.00
+  gpt-4o-mini:
+    provider: openai
+    input_usd_per_1m: 0.15
+    output_usd_per_1m: 0.60
